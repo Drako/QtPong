@@ -24,6 +24,9 @@
 
 #include <QtWidgets/QApplication>
 
+class QAction;
+class QActionGroup;
+
 class MainWindow;
 
 class Pong
@@ -36,9 +39,32 @@ public:
     virtual ~Pong();
 
     MainWindow * mainWindow();
+    
+    enum GlobalAction
+    {
+        QuitAction = 0,
+        
+        ACTION_COUNT
+    };
+    
+    enum GlobalActionGroup
+    {
+        GameSpeedActionGroup = 0,
+        
+        ACTIONGROUP_COUNT
+    };
+    
+    QAction * action(GlobalAction which);
+    QActionGroup * actionGroup(GlobalActionGroup which);
 
 private:
     QScopedPointer<MainWindow> m_mainWindow;
+    
+    QAction * m_actions[ACTION_COUNT];
+    QActionGroup * m_actionGroups[ACTIONGROUP_COUNT];
+    
+    void setupActions();
+    void setupConnections();
 };
 
 #ifdef qApp

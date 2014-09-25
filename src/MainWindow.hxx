@@ -22,6 +22,10 @@
 
 #include <QtWidgets/QMainWindow>
 
+class QGroupBox;
+class QComboBox;
+class QLabel;
+
 class MainWindow
     : public QMainWindow
 {
@@ -30,6 +34,15 @@ class MainWindow
 public:
     MainWindow();
     virtual ~MainWindow();
+    
+private:
+    QGroupBox * m_playerGroup[2];
+    QComboBox * m_playerControllerCombo[2];
+    QLabel * m_playerPoints[2];
+    
+    void setupMenu();
+    void setupWidgets();
+    void setupConnections();
 };
 
 #endif // MAINWINDOW_HXX

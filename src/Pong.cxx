@@ -20,11 +20,18 @@
 #include "Pong.hxx"
 #include "MainWindow.hxx"
 
+#include <QtWidgets/QAction>
+#include <QtWidgets/QActionGroup>
+
 Pong::Pong(int & argc, char** argv)
     : QApplication(argc, argv)
-    , m_mainWindow(new MainWindow())
 {
+    setupActions();
+    
+    m_mainWindow.reset(new MainWindow());
     m_mainWindow->show();
+    
+    setupConnections();
 }
 
 Pong::~Pong()
@@ -34,4 +41,23 @@ Pong::~Pong()
 MainWindow * Pong::mainWindow()
 {
     return m_mainWindow.data();
+}
+
+QAction * Pong::action(GlobalAction which)
+{
+    return m_actions[which];
+}
+
+QActionGroup * Pong::actionGroup(GlobalActionGroup which)
+{
+    return m_actionGroups[which];
+}
+
+void Pong::setupActions()
+{
+    m_actions[QuitAction] = new QAction(tr("Quit"), this);
+}
+
+void Pong::setupConnections()
+{
 }
