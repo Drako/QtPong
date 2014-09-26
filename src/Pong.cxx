@@ -20,12 +20,23 @@
 #include "Pong.hxx"
 #include "MainWindow.hxx"
 
+#include <QtCore/QLibraryInfo>
+
 #include <QtWidgets/QAction>
 #include <QtWidgets/QActionGroup>
 
 Pong::Pong(int & argc, char** argv)
     : QApplication(argc, argv)
 {
+    if (m_qtTranslator.load(QStringLiteral("qt_") + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    {
+        if (m_pongTranslator.load(QLocale::system(), QString(), QStringLiteral("pong_"), QStringLiteral("://"), QStringLiteral(".qm")))
+        {
+            installTranslator(&m_qtTranslator);
+            installTranslator(&m_pongTranslator);
+        }
+    }
+    
     setupActions();
     
     m_mainWindow.reset(new MainWindow());

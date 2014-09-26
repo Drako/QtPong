@@ -35,6 +35,7 @@ MainWindow::MainWindow()
     setWindowTitle(tr("QtPong"));
     setFixedSize(800, 600);
     
+    setupActions();
     setupMenu();
     setupWidgets();
     setupConnections();
@@ -44,12 +45,23 @@ MainWindow::~MainWindow()
 {
 }
 
+void MainWindow::setupActions()
+{
+    for (int n = 0; n < 2; ++n)
+    {
+        m_configurePlayer[n] = new QAction(tr("Player &%1").arg(n + 1), this);
+    }
+}
+
 void MainWindow::setupMenu()
 {
     QMenu * fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(qApp->action(Pong::QuitAction));
     
     QMenu * settingsMenu = menuBar()->addMenu(tr("&Settings"));
+    QMenu * controlMenu = settingsMenu->addMenu(tr("&Controls"));
+    controlMenu->addAction(m_configurePlayer[0]);
+    controlMenu->addAction(m_configurePlayer[1]);
 }
 
 void MainWindow::setupWidgets()
@@ -60,17 +72,26 @@ void MainWindow::setupWidgets()
     QVBoxLayout * mainLayout = new QVBoxLayout(centralWidget);
     centralWidget->setLayout(mainLayout);
     
-    QWidget * playerWidget = new QWidget(centralWidget);
-    mainLayout->addWidget(playerWidget);
-    
-    QHBoxLayout * playerLayout = new QHBoxLayout(playerWidget);
-    playerWidget->setLayout(playerLayout);
+    QHBoxLayout * playerLayout = new QHBoxLayout(centralWidget);
+    mainLayout->addLayout(playerLayout);
     
     for (int n = 0; n < 2; ++n)
     {
-        m_playerGroup[n] = new QGroupBox(tr("Player %1").arg(n + 1), playerWidget);
+        m_playerGroup[n] = new QGroupBox(tr("Player %1").arg(n + 1), centralWidget);
         playerLayout->addWidget(m_playerGroup[n]);
+        
+        QFormLayout * layout = new QFormLayout(m_playerGroup[n]);
+        m_playerGroup[n]->setLayout(layout);
+        
+        m_playerControllerCombo[n] = new QComboBox(m_playerGroup[n]);
+        layout->addRow(tr("Controller:"), m_playerControllerCombo[n]);
+        
+        m_playerPoints[n] = new QLabel(QStringLiteral("0"), m_playerGroup[n]);
+        layout->addRow(tr("Points:"), m_playerPoints[n]);
     }
+    
+    QGroupBox * gameGroup = new QGroupBox(tr("Game"), centralWidget);
+    mainLayout->addWidget(gameGroup, 1);
 }
 
 void MainWindow::setupConnections()

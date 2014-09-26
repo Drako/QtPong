@@ -25,6 +25,7 @@
 class QGroupBox;
 class QComboBox;
 class QLabel;
+class QAction;
 
 class MainWindow
     : public QMainWindow
@@ -40,6 +41,9 @@ private:
     QComboBox * m_playerControllerCombo[2];
     QLabel * m_playerPoints[2];
     
+    QAction * m_configurePlayer[2];
+    
+    void setupActions();
     void setupMenu();
     void setupWidgets();
     void setupConnections();

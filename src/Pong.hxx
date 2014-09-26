@@ -21,6 +21,7 @@
 #define PONG_HXX
 
 #include <QtCore/QScopedPointer>
+#include <QtCore/QTranslator>
 
 #include <QtWidgets/QApplication>
 
@@ -59,6 +60,9 @@ public:
 
 private:
     QScopedPointer<MainWindow> m_mainWindow;
+    
+    QTranslator m_qtTranslator;
+    QTranslator m_pongTranslator;
     
     QAction * m_actions[ACTION_COUNT];
     QActionGroup * m_actionGroups[ACTIONGROUP_COUNT];
