@@ -67,30 +67,38 @@ void MainWindow::setupMenu()
 void MainWindow::setupWidgets()
 {
     QWidget * centralWidget = new QWidget(this);
+    centralWidget->setObjectName(QStringLiteral("centralWidget"));
     setCentralWidget(centralWidget);
     
-    QVBoxLayout * mainLayout = new QVBoxLayout(centralWidget);
+    QVBoxLayout * mainLayout = new QVBoxLayout();
+    mainLayout->setObjectName(QStringLiteral("mainLayout"));
     centralWidget->setLayout(mainLayout);
     
-    QHBoxLayout * playerLayout = new QHBoxLayout(centralWidget);
+    QHBoxLayout * playerLayout = new QHBoxLayout();
+    playerLayout->setObjectName(QStringLiteral("playerLayout"));
     mainLayout->addLayout(playerLayout);
     
     for (int n = 0; n < 2; ++n)
     {
         m_playerGroup[n] = new QGroupBox(tr("Player %1").arg(n + 1), centralWidget);
+        m_playerGroup[n]->setObjectName(QStringLiteral("m_playerGroup[%1]").arg(n));
         playerLayout->addWidget(m_playerGroup[n]);
         
-        QFormLayout * layout = new QFormLayout(m_playerGroup[n]);
+        QFormLayout * layout = new QFormLayout();
+        layout->setObjectName(QStringLiteral("layout %1").arg(n));
         m_playerGroup[n]->setLayout(layout);
         
         m_playerControllerCombo[n] = new QComboBox(m_playerGroup[n]);
+        m_playerControllerCombo[n]->setObjectName(QStringLiteral("m_playerControllerCombo[%1]").arg(n));
         layout->addRow(tr("Controller:"), m_playerControllerCombo[n]);
         
         m_playerPoints[n] = new QLabel(QStringLiteral("0"), m_playerGroup[n]);
+        m_playerPoints[n]->setObjectName(QStringLiteral("m_playerPoints[%1]").arg(n));
         layout->addRow(tr("Points:"), m_playerPoints[n]);
     }
     
     QGroupBox * gameGroup = new QGroupBox(tr("Game"), centralWidget);
+    gameGroup->setObjectName(QStringLiteral("gameGroup"));
     mainLayout->addWidget(gameGroup, 1);
 }
 

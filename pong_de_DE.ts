@@ -29,22 +29,22 @@
         <translation>&amp;Steuerung</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="80"/>
+        <location filename="src/MainWindow.cxx" line="83"/>
         <source>Player %1</source>
         <translation>Spieler %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="87"/>
+        <location filename="src/MainWindow.cxx" line="93"/>
         <source>Controller:</source>
         <translation>Controller:</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="90"/>
+        <location filename="src/MainWindow.cxx" line="97"/>
         <source>Points:</source>
         <translation>Punkte:</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="93"/>
+        <location filename="src/MainWindow.cxx" line="100"/>
         <source>Game</source>
         <translation>Spiel</translation>
     </message>
