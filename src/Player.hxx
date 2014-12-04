@@ -17,46 +17,37 @@
  *  along with QtPong.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAINWINDOW_HXX
-#define MAINWINDOW_HXX
+#ifndef PLAYER_HXX
+#define PLAYER_HXX
 
-#include <QtCore/QMap>
+#include "Controller.hxx"
 
-#include <QtWidgets/QMainWindow>
+#include <Qt>
+#include <QtCore/QObject>
 
-class QGroupBox;
-class QComboBox;
-class QLabel;
-class QAction;
-
-class MainWindow
-    : public QMainWindow
+class Player
+    : public QObject
+    , public Controller
 {
     Q_OBJECT
-
+    
 public:
-    MainWindow();
-    virtual ~MainWindow();
+    Player(QObject * parent = nullptr);
+    virtual ~Player();
     
-    bool keyPressed(Qt::Key key) const;
+    Qt::Key upKey() const;
+    void setUpKey(Qt::Key key);
+    Q_PROPERTY(Qt::Key upKey READ upKey WRITE setUpKey)
     
-protected:
-    virtual void keyPressEvent(QKeyEvent * evt);
-    virtual void keyReleaseEvent(QKeyEvent * evt);
+    Qt::Key downKey() const;
+    void setDownKey(Qt::Key key);
+    Q_PROPERTY(Qt::Key downKey READ downKey WRITE setDownKey)
+    
+    virtual void update(Ball const * ball, Bat * bat) const;
     
 private:
-    QGroupBox * m_playerGroup[2];
-    QComboBox * m_playerControllerCombo[2];
-    QLabel * m_playerPoints[2];
-    
-    QAction * m_configurePlayer[2];
-    
-    QMap<int, bool> m_keyStates;
-    
-    void setupActions();
-    void setupMenu();
-    void setupWidgets();
-    void setupConnections();
+    Qt::Key m_upKey;
+    Qt::Key m_downKey;
 };
 
-#endif // MAINWINDOW_HXX
+#endif // PLAYER_HXX

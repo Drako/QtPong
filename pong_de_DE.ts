@@ -4,47 +4,47 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/MainWindow.cxx" line="35"/>
+        <location filename="src/MainWindow.cxx" line="37"/>
         <source>QtPong</source>
         <translation>QtPong</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="52"/>
+        <location filename="src/MainWindow.cxx" line="73"/>
         <source>Player &amp;%1</source>
         <translation>Spieler &amp;%1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="58"/>
+        <location filename="src/MainWindow.cxx" line="79"/>
         <source>&amp;File</source>
         <translation>&amp;Datei</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="61"/>
+        <location filename="src/MainWindow.cxx" line="82"/>
         <source>&amp;Settings</source>
         <translation>&amp;Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="62"/>
+        <location filename="src/MainWindow.cxx" line="83"/>
         <source>&amp;Controls</source>
         <translation>&amp;Steuerung</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="83"/>
+        <location filename="src/MainWindow.cxx" line="104"/>
         <source>Player %1</source>
         <translation>Spieler %1</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="93"/>
+        <location filename="src/MainWindow.cxx" line="114"/>
         <source>Controller:</source>
         <translation>Controller:</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="97"/>
+        <location filename="src/MainWindow.cxx" line="118"/>
         <source>Points:</source>
         <translation>Punkte:</translation>
     </message>
     <message>
-        <location filename="src/MainWindow.cxx" line="100"/>
+        <location filename="src/MainWindow.cxx" line="121"/>
         <source>Game</source>
         <translation>Spiel</translation>
     </message>

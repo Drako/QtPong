@@ -20,6 +20,8 @@
 #include "MainWindow.hxx"
 #include "Pong.hxx"
 
+#include <QtGui/QKeyEvent>
+
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QVBoxLayout>
@@ -43,6 +45,25 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
+}
+
+bool MainWindow::keyPressed(Qt::Key key) const
+{
+    return m_keyStates[key];
+}
+
+void MainWindow::keyPressEvent(QKeyEvent * evt)
+{
+    QWidget::keyPressEvent(evt);
+    
+    m_keyStates[evt->key()] = true;
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent * evt)
+{
+    QWidget::keyReleaseEvent(evt);
+    
+    m_keyStates[evt->key()] = false;
 }
 
 void MainWindow::setupActions()
